@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
-import { SignInDiv } from './styled';
+import { SignInButton, SignInDiv, SignInForm, SignInP } from './styled';
 
 const SignIn: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -17,7 +17,7 @@ const SignIn: React.FC = () => {
   return (
     <SignInDiv>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <SignInForm onSubmit={handleSubmit}>
         <label>
           Usuário:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
@@ -27,8 +27,8 @@ const SignIn: React.FC = () => {
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
         <button type="submit">Entrar</button>
-      </form>
-      <p>Não tem uma conta? <button onClick={() => navigate('/signup')}>Cadastre-se</button></p>
+      </SignInForm>
+      <SignInP>Não tem uma conta? <SignInButton onClick={() => navigate('/signup')}>Cadastre-se</SignInButton></SignInP>
     </SignInDiv>
   );
 };

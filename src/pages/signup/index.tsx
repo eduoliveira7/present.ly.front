@@ -1,12 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Resolver, useForm } from 'react-hook-form';
+import { SignUpForm } from './styled';
+import api from '../../http/api'
 
 type FormValues = {
   name: string;
   lastName: string;
   birthDate: Date;
   phone: string;
+  email: string;
+  password: string;
 };
 
 const resolver: Resolver<FormValues> = async (values) => {
@@ -30,6 +34,14 @@ const resolver: Resolver<FormValues> = async (values) => {
             type: 'required',
             message: 'This is required.',
           },
+          email: {
+            type: 'required',
+            message: 'This is required.',
+          },
+          password: {
+            type: 'required',
+            message: 'This is required.',
+          },
         }
       : {},
   };
@@ -37,21 +49,26 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 const SignUp: React.FC = () => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate();  
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({ resolver });
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    api.post('/user/signup', data)
+  });
 
   return (
-    <form onSubmit={onSubmit}>
+    <SignUpForm onSubmit={onSubmit}>
       <input {...register("name")} placeholder="Digite seu nome" />
       {errors?.name && <p>{errors.name.message}</p>}
       
       <input {...register("lastName")} placeholder="Digite seu sobrenome" />
+      <input {...register("birthDate")} placeholder="Digite sua data de nascimento" type="date"/>      <input {...register("phone")} placeholder="Digite seu telefone" type='tel'/>
+      <input {...register("email")} placeholder="Digite seu email" type='email'/>
+      <input {...register("password")} placeholder="Digite sua senha" type='password' />
 
       <input type="submit" />
-      <p>Já tem uma conta? <button onClick={() => navigate('/login')}>Login</button></p>
-    </form>
+      <p>Já tem uma conta? <button onClick={() => navigate('/')}>Login</button></p>
+    </SignUpForm>
   );
 }
 
