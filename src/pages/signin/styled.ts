@@ -1,25 +1,34 @@
 import styled from 'styled-components';
 
 export const SignInDiv = styled.div`
-  margin: 0;
+  height: 600px;
+  width: 500px;
+  margin: 120px auto;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   justify-content: space-around;
-  height: 100vh;
-  background: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ff4242;
+  border: black 7px inset;
+	color: antiquewhite;
+	font-weight: bold;
+	
+	h2 {
+		color: white;
+  }
+	
 `
 
 export const SignInP = styled.p`
-  color: #33331c;
-  font-family: Arial, Helvetica, sans-serif;
+	color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 25%;
+  width: 78%;
 `
 
-export const SignInButton = styled.button`
+export const SignUpButton = styled.button`
   border: 0;
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 50px;
@@ -32,11 +41,29 @@ export const SignInButton = styled.button`
     background-color: antiquewhite;
   }
 `
+	
 
 export const SignInForm = styled.form`
+	height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 100px;
+	gap: 10px;
+	//border: 2px solid black;
+	
+`
+
+export const Button = styled.button `
+  border: 0;
+	font-size: 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  background: darkred;
+  width: 200px;
+  height: 40px;
+	color: white;
+  &:hover {
+    background-color: black;
+  }
 `

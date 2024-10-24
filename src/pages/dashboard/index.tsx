@@ -4,6 +4,14 @@ import { useAuth } from '../../context/authContext';
 const Dashboard: React.FC = () => {
   const { user, logout } = useAuth();
 
+
+
+  /*
+  nav bar?
+  show user name? id? email? == key
+  register items? redirect to register items page?
+  show items?
+   */
   return (
     <div>
       <h2>Bem-vindo, {user}!</h2>
